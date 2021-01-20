@@ -11,12 +11,16 @@
         var xml = new XMLHttpRequest();
         // 告诉ajax对象要向哪里发送请求，以什么方式发送请求
         // 第一个参数是请求方式，第二个参数是请求地址
-        xml.open('get','http://localhost:3000/first');
+        xml.open('get','http://localhost:3000/responseData');
         // 发送请求
         xml.send();
         // 获取服务器端响应到客户端的数据
         xml.onload = function() {
-            console.log(xml.responseText);
+            var responseText = JSON.parse(xml.responseText) //将字符串转换为JSON对象
+            console.log(responseText);
+            console.log(typeof responseText);
+            var str = '<h2>'+ responseText.name +'</h2>';
+            document.body.innerHTML = str;
         }
 
     </script>

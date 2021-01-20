@@ -11,9 +11,12 @@
         var xml = new XMLHttpRequest();
         // 告诉ajax对象要向哪里发送请求，以什么方式发送请求
         // 第一个参数是请求方式，第二个参数是请求地址
-        xml.open('get','http://localhost:3000/first');
+        xml.open('post','http://localhost:3000/json');
+        //通过请求头来告诉服务器客户端像服务器端传递的请求参数的格式是什么
+        xml.setRequestHeader('Content-type','application/json')
+        // JAON.stringify()将json对象转换为json字符串
         // 发送请求
-        xml.send();
+        xml.send(JSON.stringify({name:"lisi",age:30}));
         // 获取服务器端响应到客户端的数据
         xml.onload = function() {
             console.log(xml.responseText);
