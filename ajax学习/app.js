@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname,'public')));
 
 app.get('/first',(req,res) => {
-    res.send('Hello');
+    res.status(400).send('Hello?');
 });
 
 app.get('/responseData',(req,res) => {
