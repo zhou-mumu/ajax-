@@ -5,6 +5,8 @@ const path = require('path');
 
 const bodyParser = require('body-parser');
 
+const fs = require('fs');
+
 //创建web服务器
 const app = express();
 
@@ -39,6 +41,12 @@ app.get('/readystate',(req,res) => {
 
 app.get('/error',(req,res) => {
     res.status(400).send('not ok');
+})
+
+app.get('/cache',(req,res) => {
+    fs.readFile('./test.txt',(err,result) => {
+        res.send(result);
+    });
 })
 //监听端口
 app.listen(3000);

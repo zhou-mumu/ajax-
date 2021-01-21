@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">发送ajax请求</button>
+    <script>
+        var btn = document.querySelector('#btn');
+
+        btn.onclick = function() {
+            //创建ajax对象
+            var xml = new XMLHttpRequest();
+            // 告诉ajax对象要向哪里发送请求，以什么方式发送请求
+            // 第一个参数是请求方式，第二个参数是请求地址
+            xml.open('get','http://localhost:3000/cahche');
+            // 发送请求
+            xml.send();
+            // 获取服务器端响应到客户端的数据
+            xml.onreadystatechange = function() {
+                if(xml.readyState == 4 && xml.status == 200) {
+                    alert(xml.responseText);
+                }
+            }
+    </script>
+</body>
+</html>
