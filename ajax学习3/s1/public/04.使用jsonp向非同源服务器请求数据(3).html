@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点我发送请求</button>
+    <script>
+        function fn (data) {
+            console.log('客户端的函数被调用了');
+            console.log(data);
+        }
+    </script>
+    <!-- 将非同源服务器端的请求地址写在script标签的src属性中  -->
+    <script type="text/javascript">
+       var btn = document.querySelector('#btn');
+       btn.onclick = function() {
+        // 创建script标签
+        var script = document.createElement('script');
+        // 设置src属性
+        script.src = "http://localhost:3001/test";
+        // 将script标签追加到页面中
+        document.body.appendChild(script);
+        // 为script标签添加onload事件
+        script.onload = function() {
+            // 将body中的script标签删除掉
+            document.body.removeChild(script);
+        }
+    }
+    </script>
+
+</body>
+</html>

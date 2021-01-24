@@ -175,7 +175,7 @@ app.post('/formData', (req, res) => {
 app.post('/upload', (req, res) => {
 	// 创建formidable表单解析对象
 	const form = new formidable.IncomingForm();
-	// 设置客户端上传文件的存储路径
+	// 设置客户端上传文件的存储路径   
 	form.uploadDir = path.join(__dirname, 'public', 'uploads');
 	// 保留上传文件的后缀名字
 	form.keepExtensions = true;
