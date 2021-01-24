@@ -15,9 +15,10 @@ app.get('/test', (req, res) => {
 
 app.get('/better', (req, res) => {
     //接受客户端传递过来的函数名称
-    const fnName = req.query.callback;
-    const result = fnName + '({name: "周棒"})';
-    res.send(result);
+    // const fnName = req.query.callback;
+    // const result = fnName + '({name: "周棒"})';
+    // res.send(result);
+    res.jsonp({name:'lisi',age:20});
 });
 
 // 监听端口
