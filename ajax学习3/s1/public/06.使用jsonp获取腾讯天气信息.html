@@ -12,21 +12,24 @@
 </head>
 <body>
 	<div class="container">
-		<table class="table table-striped table-hover" align="center" id="box"></table>
+		<table class="table table-striped table-hover" align="center" id="box">
+			
+		</table>
+	     
 	</div>
 	<script src="/js/jsonp.js"></script>
 	<script src="/js/template-web.js"></script>
 	<script type="text/html" id="tpl">
-		<tr>
-			<th>时间</th>
-			<th>温度</th>
-			<th>天气</th>
-			<th>风向</th>
-			<th>风力</th>
+        <tr>
+				<th>时间</th>
+				<th>温度</th>
+				<th>天气</th>
+				<th>风向</th>
+				<th>风力</th>
 		</tr>
 		{{each info}}
 		<tr>
-			<td>{{dateFormat($value.update_time)}}</td>
+			<td>{{dataFormat($value.update_time)}}</td>
 			<td>{{$value.degree}}</td>
 			<td>{{$value.weather}}</td>
 			<td>{{$value.wind_direction}}</td>
@@ -35,26 +38,25 @@
 		{{/each}}
 	</script>
 	<script>
-		// 获取table标签
-		var box = document.getElementById('box');
+		var box = document.querySelector('#box');
 
-		function dateFormat(date) {
-			var year = date.substr(0, 4);
-			var month = date.substr(4, 2);
-			var day = date.substr(6, 2);
-			var hour = date.substr(8, 2);
-			var minute = date.substr(10, 2);
-			var seconds = date.substr(12, 2);
-
-			return year + '年' + month + '月' + day + '日' + hour + '时' + minute + '分' + seconds + '秒';
+		function dataFormat(data) {
+			var year = data.substr(0,4);
+			var month = data.substr(4,2);
+			var day = data.substr(6,2);
+			var hour = data.substr(8,2);
+			var minute = data.substr(10,2);
+			var seconds = data.substr(12,2);
+			return year + '年' + month + '月' + day + '日' + hour + '时'
+			+ minute + '分' + seconds + '秒';
 		}
 
-		// 向模板中开放外部变量
-		template.defaults.imports.dateFormat = dateFormat;
+        // 向模板中开放外部变量
+		template.defaults.imports.dataFormat = dataFormat;
 
 		// 向服务器端获取天气信息
 		jsonp({
-			url: 'https://wis.qq.com/weather/common',
+			url: 'http://wis.qq.com/weather/common',
 			data: {
 				source: 'pc',
 				weather_type: 'forecast_1h',
@@ -62,12 +64,14 @@
 				province: '黑龙江省',
 				city: '哈尔滨市'
 			},
-			success: function (data) {
-				var html = template('tpl', {info: data.data.forecast_1h});
-				box.innerHTML = html;
-				
+			success: function(data) {
+				// console.log(data);
+				var html = template('tpl',{info: data.data.forecast_1h});
+			    box.innerHTML = html;
+				// console.log(html);
 			}
 		})
 	</script>
+
 </body>
 </html>
