@@ -9,13 +9,14 @@
 	<script src="/js/jquery.min.js"></script>
 	<script>
 		$('#btn').on('click', function () {
-			// $.get('/base', 'name=zhangsan&age=30', function (response) {
-			// 	console.log(response)
-			// })
-			
-			$.post('/base', function (response) {
+			$.get('/base', 'name=zhangsan&age=30', function (response) {
 				console.log(response)
 			})
+			//第二个参数是发送到服务器端的数据，可选可不选
+			//参数可以是字符串也可以是对象
+			// $.post('/base', function (response) {
+			// 	console.log(response)
+			// })
 		});
 	</script>
 </body>

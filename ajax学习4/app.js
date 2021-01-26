@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extended: false}));
 
 // 数据库连接
-mongoose.connect('mongodb://itcast:itcast@localhost:27017/todo', {useNewUrlParser: true })
+mongoose.connect('mongodb://zhoubang:zhoubang@localhost:27017/todo', {useNewUrlParser: true })
 
 app.get('/base', (req, res) => {
 	res.send({
