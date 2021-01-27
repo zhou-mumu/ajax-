@@ -17,7 +17,9 @@
 			<!-- This section should be hidden by default and shown when there are todos -->
 			<section class="main">
 				<input class="toggle-all" type="checkbox">
-				<ul class="todo-list" id="todo-list"></ul>
+				<ul class="todo-list" id="todo-list">
+					
+				</ul>
 			</section>
 			<!-- This footer should hidden by default and shown when there are todos -->
 			<footer class="footer">
@@ -74,7 +76,6 @@
 			$(document).on('ajaxComplete', function () {
 				NProgress.done() 
 			})
-
 			// 向服务器端发送请求 获取已经存在的任务
 			$.ajax({
 				url: '/todo/task',
@@ -82,7 +83,7 @@
 				success: function (response) {
 					// 将已存在的任务存储在taskAry变量中
 					taskAry = response;
-					// 拼接字符串 将拼接好的字符串显示在页面中
+					// 拼接字符串将拼接好的字符串显示在页面中
 					render();
 					// 计算未完成任务数量
 					calcCount ()
@@ -144,8 +145,10 @@
 					},
 					success: function (response) {
 						// 从任务数组中找到已经删除掉的任务的索引
+						// item为遍历数组项
 						var index = taskAry.findIndex(item => item._id == id);
 						// 将任务从数组中删除
+						// 删除1个元素
 						taskAry.splice(index, 1);
 						// 重新将任务数组中的元素显示在页面中
 						render();
