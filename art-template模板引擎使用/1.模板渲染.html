@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container"></div>
+    <script src="js/template-web.js"></script>
+    <script type="text/html" id="tpl">
+      <div>
+        <span>姓名：{{name}}</span>
+        <span>姓名：{{age}}</span>
+      </div>
+    </script>
+    <script>
+        var data = {
+            name: '李四',
+            age: 30
+        }
+        // 告诉模板引擎将模板id为tpl的模板和data数据对象进行拼接
+        var html = template('tpl',data)
+        document.querySelector('#container').innerHTML = html;
+    </script>
+</body>
+</html>
